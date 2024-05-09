@@ -16,7 +16,9 @@ export const useUserStore = defineStore({
   id: 'app-user',
   state: (): StoreUser => ({
     token: token,
-    info: {},
+    info: {
+      name: '小宋'
+    },
   }),
   getters: {
     getUserInfo(): any {

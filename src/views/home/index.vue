@@ -9,6 +9,7 @@
     </quark-button>
   </div>
   {{ getUserInfo }}
+  <div class="sector"></div>
 </template>
 
 <script lang="ts" setup>
@@ -20,6 +21,7 @@
   const userStore = useUserStore();
   const getUserInfo = computed(() => {
     const { name = '' } = userStore.getUserInfo || {};
+    console.log('userStore.getUserInfo', userStore.getUserInfo.name)
     return name;
   });
   const changeLang = (type) => {
@@ -28,6 +30,30 @@
 </script>
 
 <style lang="scss">
+  .sector {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-color: #3498db;
+    border-radius: 50%;
+    clip-path: inset(0 round 50% 50% 0 0);
+    overflow: hidden;
+  }
+ 
+  .sector::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100px;
+    height: 50px;
+    background-color: inherit;
+    border-radius: 100% 100% 0 0;
+    transform: translateX(-50%);
+    transform-origin: top;
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+    background: #fff;
+  }
   .header {
     display: flex;
     justify-content: center;
